@@ -42,6 +42,8 @@ module Zipline
         {url: file.url}
       elsif defined?(CarrierWave::SanitizedFile) && file.is_a?(CarrierWave::SanitizedFile)
         {file: File.open(file.path)}
+      elsif defined?(Hydra::PCDM::File) && file.is_a?(Hydra::PCDM::File)
+        {url: file.uri.to_s}
       elsif is_io?(file)
         {file: file}
       elsif defined?(ActiveStorage::Blob) && file.is_a?(ActiveStorage::Blob)
